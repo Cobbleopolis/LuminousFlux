@@ -1,0 +1,16 @@
+[
+{
+  "modid": "@MODID@",
+  "name": "@MODNAME@",
+  "description": "A mod based around lighting.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Cobbleopolis"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
