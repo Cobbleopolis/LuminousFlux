@@ -1,0 +1,7 @@
+tile.glowingGlass.name=Verre rougeoyant
+tile.luminousLamp.name=Lampe lumineuse
+tile.light.name=Installation de lumière
+
+item.bulb.name=Bulbe d'ampoule
+
+itemGroup.lf=Luminous Flux

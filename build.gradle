@@ -41,7 +41,7 @@ plugins {
 }
 */
 version = version_major + "." + version_minor + "." + version_patch
-group= "com.cobble." + modid // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group= "com.cobble.${modid}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = modid
 
 minecraft {
@@ -60,8 +60,6 @@ minecraft {
 
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     replace '@VERSION@', project.version
-    replace '@MODID@', modid
-    replace '@MODNAME@', modname
 }
 
 dependencies {
@@ -86,8 +84,8 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-//    deobfCompile "mezz.jei:${mc_version}:${jei_version}"
-    provided "mcp.mobius.waila:Waila:${waila_version}_${mc_version}:dev"
+    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}"
+//    deobfCompile "mcp.mobius.waila:Waila:${waila_version}_${mc_version}:dev"
 
 }
 
@@ -99,9 +97,8 @@ processResources {
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version':project.version, 'mcversion':project.minecraft.version, 'modid':modid
     }
         
     // copy everything else, thats not the mcmod.info

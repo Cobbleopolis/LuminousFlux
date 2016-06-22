@@ -1,0 +1,11 @@
+tile.glowingGlass.name=Glowing Glass
+tile.luminousLamp.name=Luminous Lamp
+tile.lightFixture.name=Light Fixture
+tile.luxGenerator.name=Lux Generator
+tile.luxBattery.name=Lux Battery
+
+item.lightBulb.name=Light Bulb
+item.wiringTool.name=Wiring Tool
+item.luxMeter.name=Lux Meter
+
+itemGroup.lf=Luminous Flux

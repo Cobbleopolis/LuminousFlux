@@ -1,7 +1,7 @@
 [
 {
-  "modid": "@MODID@",
-  "name": "@MODNAME@",
+  "modid": "${modid}",
+  "name": "Luminous Flux",
   "description": "A mod based around lighting.",
   "version": "${version}",
   "mcversion": "${mcversion}",
