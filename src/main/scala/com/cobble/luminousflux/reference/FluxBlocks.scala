@@ -1,6 +1,6 @@
 package com.cobble.luminousflux.reference
 
-import com.cobble.luminousflux.block.{BlockGlowingGlass, FluxBlock}
+import com.cobble.luminousflux.block.{BlockGlowingGlass, BlockLamp, FluxBlock}
 import com.cobble.luminousflux.config.Constants
 import net.minecraft.block.Block
 import net.minecraft.client.Minecraft
@@ -14,6 +14,9 @@ object FluxBlocks {
     val blockArray: ArrayBuffer[FluxBlock] = ArrayBuffer[FluxBlock]()
 
     val glowingGlass: BlockGlowingGlass = new BlockGlowingGlass
+
+	val lampOn: BlockLamp = new BlockLamp(true)
+	val lampOff: BlockLamp = new BlockLamp(false)
 
     def registerBlocks(): Unit = {
         println("Begin registering blocks...")
@@ -29,6 +32,8 @@ object FluxBlocks {
     def registerItemRenderers(): Unit = {
         println("Registering item renderers...")
         registerBlockItemRender(glowingGlass)
+        registerBlockItemRender(lampOn)
+        registerBlockItemRender(lampOff)
         println("Finished registering item renderers...")
     }
 
