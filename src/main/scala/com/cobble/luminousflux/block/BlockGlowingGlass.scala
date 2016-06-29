@@ -4,9 +4,8 @@ import net.minecraft.block.SoundType
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.IBlockState
 import net.minecraft.creativetab.CreativeTabs
-import net.minecraft.init.Blocks
-import net.minecraft.util.{BlockRenderLayer, EnumFacing}
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.{BlockRenderLayer, EnumFacing}
 import net.minecraft.world.IBlockAccess
 import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 
@@ -26,9 +25,9 @@ class BlockGlowingGlass extends FluxBlock(Material.GLASS) {
 
     @SideOnly(Side.CLIENT)
     override def shouldSideBeRendered(blockState: IBlockState,
-                             blockAccess: IBlockAccess,
-                             pos: BlockPos,
-                             side: EnumFacing): Boolean = {
+                                      blockAccess: IBlockAccess,
+                                      pos: BlockPos,
+                                      side: EnumFacing): Boolean = {
         val iblockstate = blockAccess.getBlockState(pos.offset(side))
         val block = iblockstate.getBlock
         block != this

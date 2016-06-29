@@ -5,43 +5,74 @@ import java.util.Random
 import com.cobble.luminousflux.reference.FluxBlocks
 import net.minecraft.block.{Block, SoundType}
 import net.minecraft.block.material.Material
-import net.minecraft.block.state.IBlockState
+import net.minecraft.block.properties.{IProperty, PropertyBool}
+import net.minecraft.block.state.{BlockStateContainer, IBlockState}
 import net.minecraft.creativetab.CreativeTabs
-import net.minecraft.util.BlockRenderLayer
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.{BlockRenderLayer, EnumFacing}
 import net.minecraft.world.{IBlockAccess, World}
+import net.minecraftforge.common.property.Properties
 import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 
-class BlockLamp(isOn: Boolean) extends FluxBlock(Material.GLASS) {
-	if (isOn)
-		setUnlocalizedName("fluxLamp_On")
-	else
-		setUnlocalizedName("fluxLamp_Off")
-	setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
-	setSoundType(SoundType.GLASS)
-	setLightLevel(if (isOn) 1F else 0F)
-	setLightOpacity(0)
+class BlockLamp() extends FluxBlock(Material.GLASS) {
 
-	@SideOnly(Side.CLIENT)
-	override def getBlockLayer = BlockRenderLayer.TRANSLUCENT
+//    val defaultState: IBlockState = getDefaultState.withProperty(isPowered, false)
 
-	override def isFullCube(state: IBlockState): Boolean = false
+    setUnlocalizedName("fluxLamp")
+    setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
+    setSoundType(SoundType.GLASS)
+    setLightLevel(0F)
+    setLightOpacity(0)
 
-	override def isOpaqueCube(state: IBlockState): Boolean = false
+    setDefaultState(blockState.getBaseState.withProperty(BlockLamp.isPowered, false.asInstanceOf[java.lang.Boolean]))
 
-	override def onBlockAdded(world: World, pos: BlockPos, state: IBlockState): Unit = {
-		if (!world.isRemote)
-			if (isOn && !world.isBlockPowered(pos))
-				world.setBlockState(pos, FluxBlocks.lampOff.getDefaultState, 2)
-			else if (!isOn && world.isBlockPowered(pos))
-				world.setBlockState(pos, FluxBlocks.lampOn.getDefaultState, 2)
-	}
+    @SideOnly(Side.CLIENT)
+    override def getBlockLayer = BlockRenderLayer.TRANSLUCENT
 
-	override def onNeighborChange(blockAccess: IBlockAccess, pos: BlockPos, neighborPos: BlockPos): Unit = {
+    override def isFullCube(state: IBlockState): Boolean = false
 
-	}
+    override def isOpaqueCube(state: IBlockState): Boolean = false
 
-	override def updateTick(world: World, pos: BlockPos, state: IBlockState, rand: Random): Unit = {
+    override def onBlockAdded(world: World, pos: BlockPos, state: IBlockState): Unit = {
+        if (!world.isRemote)
+            world.setBlockState(pos, state.withProperty(BlockLamp.isPowered, world.isBlockPowered(pos).asInstanceOf[java.lang.Boolean]), 2)
+    }
 
-	}
+    override def neighborChanged(state: IBlockState, world: World, pos: BlockPos, block: Block): Unit = {
+        if (!world.isRemote)
+            if (!world.isBlockPowered(pos))
+                world.scheduleUpdate(pos, this, 4)
+            else if (world.isBlockPowered(pos))
+                world.setBlockState(pos, state.withProperty(BlockLamp.isPowered, true.asInstanceOf[java.lang.Boolean]), 2)
+    }
+
+    override def updateTick(world: World, pos: BlockPos, state: IBlockState, rand: Random): Unit = {
+        if (!world.isRemote)
+            if (!world.isBlockPowered(pos)) {
+                world.setBlockState(pos, state.withProperty(BlockLamp.isPowered, false.asInstanceOf[java.lang.Boolean]), 2)
+            }
+    }
+
+    override def getMetaFromState(state: IBlockState): Int = {
+        if (state.getValue(BlockLamp.isPowered).asInstanceOf[Boolean]) 1 else 0
+    }
+
+    override def getStateFromMeta(meta: Int): IBlockState = {
+        getDefaultState.withProperty(BlockLamp.isPowered, (meta != 0).asInstanceOf[java.lang.Boolean])
+    }
+
+    override protected def createBlockState(): BlockStateContainer = {
+        new BlockStateContainer(this, BlockLamp.isPowered)
+    }
+
+    override def getLightValue(state: IBlockState, world: IBlockAccess, pos: BlockPos): Int = {
+        if (state.getValue[java.lang.Boolean](BlockLamp.isPowered).asInstanceOf[Boolean])
+            15
+        else
+            0
+    }
+}
+
+object BlockLamp {
+    val isPowered: PropertyBool = PropertyBool.create("on")
 }

@@ -15,8 +15,7 @@ object FluxBlocks {
 
     val glowingGlass: BlockGlowingGlass = new BlockGlowingGlass
 
-	val lampOn: BlockLamp = new BlockLamp(true)
-	val lampOff: BlockLamp = new BlockLamp(false)
+	val lamp: BlockLamp = new BlockLamp()
 
     def registerBlocks(): Unit = {
         println("Begin registering blocks...")
@@ -32,8 +31,7 @@ object FluxBlocks {
     def registerItemRenderers(): Unit = {
         println("Registering item renderers...")
         registerBlockItemRender(glowingGlass)
-        registerBlockItemRender(lampOn)
-        registerBlockItemRender(lampOff)
+        registerBlockItemRender(lamp)
         println("Finished registering item renderers...")
     }
 
