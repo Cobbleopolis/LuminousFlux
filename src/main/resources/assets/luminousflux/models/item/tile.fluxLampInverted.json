@@ -1,5 +1,8 @@
 {
-  "parent": "luminousflux:block/tile.glowingGlass",
+  "parent": "luminousflux:block/tile.fluxLamp",
+  "textures": {
+    "all": "luminousflux:blocks/luxGeneratorTop"
+  },
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

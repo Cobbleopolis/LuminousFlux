@@ -1,5 +1,6 @@
 tile.glowingGlass.name=Glowing Glass
 tile.fluxLamp.name=Luminous Lamp
+tile.fluxLampInverted.name=Inverted Luminous Lamp
 tile.lightFixture.name=Light Fixture
 tile.luxGenerator.name=Lux Generator
 tile.luxBattery.name=Lux Battery

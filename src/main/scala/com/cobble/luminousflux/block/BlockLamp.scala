@@ -14,17 +14,18 @@ import net.minecraft.world.{IBlockAccess, World}
 import net.minecraftforge.common.property.Properties
 import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 
-class BlockLamp() extends FluxBlock(Material.GLASS) {
+class BlockLamp(inverted: Boolean = false) extends FluxBlock(Material.GLASS) {
 
-//    val defaultState: IBlockState = getDefaultState.withProperty(isPowered, false)
-
-    setUnlocalizedName("fluxLamp")
+    if (inverted)
+        setUnlocalizedName("fluxLampInverted")
+    else
+        setUnlocalizedName("fluxLamp")
     setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
     setSoundType(SoundType.GLASS)
     setLightLevel(0F)
     setLightOpacity(0)
 
-    setDefaultState(blockState.getBaseState.withProperty(BlockLamp.isPowered, false.asInstanceOf[java.lang.Boolean]))
+    setDefaultState(blockState.getBaseState.withProperty(BlockLamp.isPowered, inverted.asInstanceOf[java.lang.Boolean]))
 
     @SideOnly(Side.CLIENT)
     override def getBlockLayer = BlockRenderLayer.TRANSLUCENT
@@ -66,10 +67,13 @@ class BlockLamp() extends FluxBlock(Material.GLASS) {
     }
 
     override def getLightValue(state: IBlockState, world: IBlockAccess, pos: BlockPos): Int = {
-        if (state.getValue[java.lang.Boolean](BlockLamp.isPowered).asInstanceOf[Boolean])
-            15
-        else
-            0
+        (inverted, state.getValue[java.lang.Boolean](BlockLamp.isPowered).booleanValue()) match {
+            case (true, true) => 0
+            case (true, false) => 15
+            case (false, true) => 15
+            case (false, false) => 0
+            case _ => 15
+        }
     }
 }
 
