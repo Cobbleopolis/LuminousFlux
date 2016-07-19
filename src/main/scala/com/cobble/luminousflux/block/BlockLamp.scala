@@ -8,7 +8,7 @@ import net.minecraft.block.material.Material
 import net.minecraft.block.properties.{IProperty, PropertyBool}
 import net.minecraft.block.state.{BlockStateContainer, IBlockState}
 import net.minecraft.creativetab.CreativeTabs
-import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.{AxisAlignedBB, BlockPos}
 import net.minecraft.util.{BlockRenderLayer, EnumFacing}
 import net.minecraft.world.{IBlockAccess, World}
 import net.minecraftforge.common.property.Properties
@@ -20,7 +20,6 @@ class BlockLamp(inverted: Boolean = false) extends FluxBlock(Material.GLASS) {
         setUnlocalizedName("fluxLampInverted")
     else
         setUnlocalizedName("fluxLamp")
-    setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
     setSoundType(SoundType.GLASS)
     setLightLevel(0F)
     setLightOpacity(0)
@@ -28,7 +27,7 @@ class BlockLamp(inverted: Boolean = false) extends FluxBlock(Material.GLASS) {
     setDefaultState(blockState.getBaseState.withProperty(BlockLamp.isPowered, inverted.asInstanceOf[java.lang.Boolean]))
 
     @SideOnly(Side.CLIENT)
-    override def getBlockLayer = BlockRenderLayer.TRANSLUCENT
+    override def getBlockLayer = BlockRenderLayer.CUTOUT_MIPPED
 
     override def isFullCube(state: IBlockState): Boolean = false
 
@@ -75,6 +74,10 @@ class BlockLamp(inverted: Boolean = false) extends FluxBlock(Material.GLASS) {
             case _ => 15
         }
     }
+    
+    override def getBoundingBox(state: IBlockState, source: IBlockAccess, pos: BlockPos): AxisAlignedBB =
+        new AxisAlignedBB(0.125d, 0.0d, 0.125d, 0.875d, 0.875d, 0.875d)
+    
 }
 
 object BlockLamp {

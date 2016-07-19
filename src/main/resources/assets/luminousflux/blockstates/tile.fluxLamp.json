@@ -8,7 +8,7 @@
     "on": {
       "true": {
         "textures": {
-          "all": "luminousflux:blocks/luxGeneratorTop"
+          "lamp": "luminousflux:blocks/luminousLamp_On"
         }
       },
       "false": {

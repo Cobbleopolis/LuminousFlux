@@ -1,7 +1,7 @@
 {
   "parent": "luminousflux:block/tile.fluxLamp",
   "textures": {
-    "all": "luminousflux:blocks/luxGeneratorTop"
+    "lamp": "luminousflux:blocks/luminousLamp_On"
   },
   "display": {
     "thirdperson": {
