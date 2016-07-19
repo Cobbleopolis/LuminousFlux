@@ -9,4 +9,4 @@ item.lightBulb.name=Light Bulb
 item.wiringTool.name=Wiring Tool
 item.luxMeter.name=Lux Meter
 
-itemGroup.lf=Luminous Flux
+itemGroup.luminousflux=Luminous Flux

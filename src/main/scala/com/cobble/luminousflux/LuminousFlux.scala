@@ -2,6 +2,7 @@ package com.cobble.luminousflux
 
 import com.cobble.luminousflux.proxy.{CommonProxy, IProxy}
 import com.cobble.luminousflux.reference.FluxBlocks
+import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.init.Blocks
 import net.minecraftforge.fml.common.{Mod, SidedProxy}
 import net.minecraftforge.fml.common.Mod.EventHandler
@@ -14,7 +15,9 @@ object LuminousFlux {
     var luminousFlux = null
 
     @SidedProxy(clientSide="com.cobble.luminousflux.proxy.ClientProxy", serverSide="com.cobble.luminousflux.proxy.ServerProxy")
-    var proxy: IProxy = null
+    var proxy: IProxy = _
+    
+    val creativeTab: CreativeTabs = new LuminousFluxTab
 
     @EventHandler
     def preInit(event: FMLPreInitializationEvent): Unit = {

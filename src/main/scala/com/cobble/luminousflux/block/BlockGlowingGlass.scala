@@ -11,7 +11,6 @@ import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 
 class BlockGlowingGlass extends FluxBlock(Material.GLASS) {
     setUnlocalizedName("glowingGlass")
-    setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
     setSoundType(SoundType.GLASS)
     setLightLevel(1F)
     setLightOpacity(0)
