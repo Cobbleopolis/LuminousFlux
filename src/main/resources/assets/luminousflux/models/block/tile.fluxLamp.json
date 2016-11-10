@@ -104,10 +104,10 @@
       "from": [ 4, 1, 4 ],
       "to": [ 12, 11, 12 ],
       "faces": {
-        "north": { "uv": [ 3.2, 0, 12.8, 16 ], "texture": "#lamp" },
-        "south": { "uv": [ 3.2, 0, 12.8, 16 ], "texture": "#lamp" },
-        "west":  { "uv": [ 3.2, 0, 12.8, 16 ], "texture": "#lamp" },
-        "east":  { "uv": [ 3.2, 0, 12.8, 16 ], "texture": "#lamp" }
+        "north": { "uv": [ 4, 1, 12, 11 ], "texture": "#lamp" },
+        "south": { "uv": [ 4, 1, 12, 11 ], "texture": "#lamp" },
+        "west":  { "uv": [ 4, 1, 12, 11 ], "texture": "#lamp" },
+        "east":  { "uv": [ 4, 1, 12, 11 ], "texture": "#lamp" }
       },
       "__comment": "Lamp Glass"
     }

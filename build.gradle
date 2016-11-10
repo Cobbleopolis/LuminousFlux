@@ -25,9 +25,9 @@ repositories {
         name "JEI"
         url "http://dvs1.progwml6.com/files/maven"
     }
-    ivy {
-        name 'CoFHLib'
-        artifactPattern "http://addons-origin.cursecdn.com/files/${cofhlib_cf}/[module]-[revision].[ext]"
+    maven {
+        name "Open Computers"
+        url "http://maven.cil.li/"
     }
 }
 
@@ -47,7 +47,7 @@ archivesBaseName = modid
 minecraft {
     version = mc_version + "-" + forge_version
     runDir = "run"
-    
+
     // the mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   snapshot are built nightly.
     // stable_#            stables are built at the discretion of the MCP team.
@@ -67,7 +67,7 @@ dependencies {
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
     //compile "some.group:artifact:version"
-      
+
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
     //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
@@ -84,8 +84,14 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}"
-//    deobfCompile "mcp.mobius.waila:Waila:${waila_version}_${mc_version}:dev"
+    // Dev APIs
+    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    deobfCompile "li.cil.oc:OpenComputers:MC${mc_version}-${opencomputers_version}-dev:api"
+
+    // Runtime mods
+    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    runtime "mcp.mobius.waila:Waila:${waila_version}:dev" // Update to use mc_version when waila version updates?
+    runtime "li.cil.oc:OpenComputers:MC${mc_version}-${opencomputers_version}-dev"
 
 }
 
