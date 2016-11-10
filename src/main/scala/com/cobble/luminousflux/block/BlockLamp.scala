@@ -27,7 +27,7 @@ class BlockLamp(inverted: Boolean = false) extends FluxBlock(Material.GLASS) {
     setDefaultState(blockState.getBaseState.withProperty(BlockLamp.isPowered, inverted.asInstanceOf[java.lang.Boolean]))
 
     @SideOnly(Side.CLIENT)
-    override def getBlockLayer = BlockRenderLayer.TRANSLUCENT
+    override def getBlockLayer = BlockRenderLayer.CUTOUT_MIPPED
 
     override def isFullCube(state: IBlockState): Boolean = false
 

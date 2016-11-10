@@ -33,7 +33,9 @@ object FluxBlocks {
         println("Registering item renderers...")
         registerBlockItemRender(glowingGlass)
         registerBlockItemRender(lamp)
+        registerBlockItemRender(lamp, 1)
         registerBlockItemRender(invertedLamp)
+        registerBlockItemRender(invertedLamp, 1)
         println("Finished registering item renderers...")
     }
 
