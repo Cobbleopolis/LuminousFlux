@@ -45,6 +45,7 @@ group= "com.cobble.${modid}" // http://maven.apache.org/guides/mini/guide-naming
 archivesBaseName = modid
 
 minecraft {
+    //TODO update forge to stable when it comes out
     version = mc_version + "-" + forge_version
     runDir = "run"
 
@@ -53,6 +54,7 @@ minecraft {
     // stable_#            stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not allways work.
     // simply re-run your setup task after changing the mappings to update your workspace.
+    //TODO update mappings to 1.11
     mappings = mcp_mappings
     useDepAts = true
     clientRunArgs += "--username=${username}"
@@ -62,6 +64,8 @@ minecraft {
     replace '@VERSION@', project.version
 }
 
+//TODO re-enable OpenComputers once it updates to 1.11
+//TODO re-enable Waila once it updates to 1.11
 dependencies {
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
@@ -86,12 +90,12 @@ dependencies {
 
     // Dev APIs
     deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
-    deobfCompile "li.cil.oc:OpenComputers:MC${mc_version}-${opencomputers_version}-dev:api"
+//    deobfCompile "li.cil.oc:OpenComputers:MC${mc_version}-${opencomputers_version}-dev:api"
 
     // Runtime mods
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
-    runtime "mcp.mobius.waila:Waila:${waila_version}:dev" // Update to use mc_version when waila version updates?
-    runtime "li.cil.oc:OpenComputers:MC${mc_version}-${opencomputers_version}-dev"
+//    runtime "mcp.mobius.waila:Waila:${waila_version}:dev" // Update to use mc_version when waila version updates?
+//    runtime "li.cil.oc:OpenComputers:MC${mc_version}-${opencomputers_version}-dev"
 
 }
 

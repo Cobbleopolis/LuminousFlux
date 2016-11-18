@@ -1,6 +1,0 @@
-{
-  "parent": "luminousflux:block/fluxBlock",
-  "textures": {
-    "all": "luminousflux:blocks/glowingGlass"
-  }
-}

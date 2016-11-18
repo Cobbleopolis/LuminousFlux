@@ -2,24 +2,22 @@ package com.cobble.luminousflux.block
 
 import java.util.Random
 
-import com.cobble.luminousflux.reference.FluxBlocks
-import net.minecraft.block.{Block, SoundType}
+import com.cobble.luminousflux.reference.Reference.UnlocalizedNames
 import net.minecraft.block.material.Material
-import net.minecraft.block.properties.{IProperty, PropertyBool}
+import net.minecraft.block.properties.PropertyBool
 import net.minecraft.block.state.{BlockStateContainer, IBlockState}
-import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.block.{Block, SoundType}
+import net.minecraft.util.BlockRenderLayer
 import net.minecraft.util.math.{AxisAlignedBB, BlockPos}
-import net.minecraft.util.{BlockRenderLayer, EnumFacing}
 import net.minecraft.world.{IBlockAccess, World}
-import net.minecraftforge.common.property.Properties
 import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 
 class BlockLamp(inverted: Boolean = false) extends FluxBlock(Material.GLASS) {
 
     if (inverted)
-        setUnlocalizedName("fluxLampInverted")
+        setUnlocalizedName(UnlocalizedNames.INVERTED_LUMINOUS_LAMP)
     else
-        setUnlocalizedName("fluxLamp")
+        setUnlocalizedName(UnlocalizedNames.LUMINOUS_LAMP)
     setSoundType(SoundType.GLASS)
     setLightLevel(0F)
     setLightOpacity(0)
@@ -38,7 +36,7 @@ class BlockLamp(inverted: Boolean = false) extends FluxBlock(Material.GLASS) {
             world.setBlockState(pos, state.withProperty(BlockLamp.isPowered, world.isBlockPowered(pos).asInstanceOf[java.lang.Boolean]), 2)
     }
 
-    override def neighborChanged(state: IBlockState, world: World, pos: BlockPos, block: Block): Unit = {
+    override def neighborChanged(state: IBlockState, world: World, pos: BlockPos, block: Block, otherBlockPos: BlockPos): Unit = {
         if (!world.isRemote)
             if (!world.isBlockPowered(pos))
                 world.scheduleUpdate(pos, this, 4)
@@ -74,10 +72,10 @@ class BlockLamp(inverted: Boolean = false) extends FluxBlock(Material.GLASS) {
             case _ => 15
         }
     }
-    
+
     override def getBoundingBox(state: IBlockState, source: IBlockAccess, pos: BlockPos): AxisAlignedBB =
         new AxisAlignedBB(0.125d, 0.0d, 0.125d, 0.875d, 0.875d, 0.875d)
-    
+
 }
 
 object BlockLamp {

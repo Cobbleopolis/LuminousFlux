@@ -1,10 +1,9 @@
 {
-  "parent": "luminousflux:block/fluxBlock",
+  "parent": "block/block",
   "textures": {
     "stone": "blocks/cobblestone",
-    "lamp": "luminousflux:blocks/luminousLamp_Off",
-    "glass": "blocks/glass",
-    "all": "blocks/cobblestone"
+    "lamp": "luminousflux:blocks/luminous_lamp_off",
+    "glass": "blocks/glass"
   },
   "elements": [
     {

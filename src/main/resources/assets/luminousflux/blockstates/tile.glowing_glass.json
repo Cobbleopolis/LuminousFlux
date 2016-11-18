@@ -1,0 +1,8 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "normal": {
+      "model": "luminousflux:tile.glowing_glass"
+    }
+  }
+}

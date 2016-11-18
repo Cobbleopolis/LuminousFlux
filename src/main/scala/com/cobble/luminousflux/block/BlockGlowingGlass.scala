@@ -1,5 +1,6 @@
 package com.cobble.luminousflux.block
 
+import com.cobble.luminousflux.reference.Reference.UnlocalizedNames
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.IBlockState
@@ -10,7 +11,7 @@ import net.minecraft.world.IBlockAccess
 import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 
 class BlockGlowingGlass extends FluxBlock(Material.GLASS) {
-    setUnlocalizedName("glowingGlass")
+    setUnlocalizedName(UnlocalizedNames.GLOWING_GLASS)
     setSoundType(SoundType.GLASS)
     setLightLevel(1F)
     setLightOpacity(0)

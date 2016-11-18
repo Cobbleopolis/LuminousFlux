@@ -1,14 +1,15 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "luminousflux:tile.fluxLamp",
+    "model": "luminousflux:tile.luminous_lamp",
+    "transform": "forge:default-block",
     "uvlock": true
   },
   "variants": {
     "on": {
       "true": {
         "textures": {
-          "lamp": "luminousflux:blocks/luminousLamp_On"
+          "lamp": "luminousflux:blocks/luminous_lamp_on"
         }
       },
       "false": {
